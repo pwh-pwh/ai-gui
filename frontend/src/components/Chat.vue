@@ -18,7 +18,7 @@ const inputMsg = ref('')
 
     </div>
 
-    <div class="flex-1 overflow-auto bg-blue-400 border-2 border-white-alpha-40 border-round p-2">
+    <div class="flex-1 overflow-auto border-2 border-white-alpha-40 border-round p-2">
       <ScrollPanel class="w-full h-full">
       <MsgItem v-for="(item,idx) in msgList" :message="item" :key="idx"/>
       </ScrollPanel>
