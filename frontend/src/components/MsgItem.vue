@@ -13,10 +13,10 @@ const positionClass = computed(() => {
 
 <template>
   <div :class="['flex align-items-start mb-4 px-3', positionClass]">
-    <div class="w-2 h-12 border-circle mr-4">
+    <div class="w-3rem h-3rem flex align-items-center justify-content-center p-1 border-circle mx-2 bg-blue-500">
       <i class="pi pi-user"></i>
     </div>
-    <div class="bg-gray-200 border-round px-1 w-full">
+    <div class="bg-black-alpha-20 border-round px-1 w-full">
       <p class="text-gray-800 text-left pl-2 text-xl">
         {{ message.content }}
       </p>

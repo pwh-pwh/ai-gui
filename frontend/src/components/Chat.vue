@@ -13,7 +13,7 @@ const doChat = () => {
   const id = Date.now().toString(16)
   msgList.push({content: inputMsg.value, userType: 'user', id: id})
 }
-const scrollPanelRef = ref<InstanceType<typeof ScrollPanel>>()
+const scrollPanelRef = ref()
 const scrollToBottom = () => {
   nextTick(() => {
     scrollPanelRef.value.$refs.content.scrollTop = scrollPanelRef.value.$refs.content.scrollHeight
@@ -46,7 +46,7 @@ onMounted(() => {
 
     <div class="flex-grow flex flex-column mt-2">
       <div class="flex-shrink-0 text-center flex w-full">
-        <InputText type="text" class="flex-grow-1 bg-black-alpha-50" v-model="inputMsg" @keyup.enter="doChat"/>
+        <InputText type="text" class="flex-grow-1 bg-white-alpha-10" v-model="inputMsg" @keyup.enter="doChat"/>
         <Button icon="pi pi-send" class="ml-2" @click="doChat"/>
       </div>
 
