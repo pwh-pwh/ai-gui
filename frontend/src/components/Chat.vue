@@ -1,12 +1,32 @@
 <script setup lang="ts">
 
 import MsgItem from "./MsgItem.vue";
-import {reactive, ref} from "vue";
+import {nextTick, onMounted, reactive, ref, watch} from "vue";
 import {Message} from "../types/Message";
+import ScrollPanel from "primevue/scrollpanel";
 
 const msgList = reactive<Message[]>([{content: 'hello', userType: 'user', id: '1'},
   {content: 'how are you', userType: 'assistant', id: '2'}])
 const inputMsg = ref('')
+const doChat = () => {
+  //生成id
+  const id = Date.now().toString(16)
+  msgList.push({content: inputMsg.value, userType: 'user', id: id})
+}
+const scrollPanelRef = ref<InstanceType<typeof ScrollPanel>>()
+const scrollToBottom = () => {
+  nextTick(() => {
+    scrollPanelRef.value.$refs.content.scrollTop = scrollPanelRef.value.$refs.content.scrollHeight
+  })
+}
+watch(msgList, () => {
+  scrollToBottom()
+})
+
+onMounted(() => {
+  scrollToBottom()
+})
+
 </script>
 
 <template>
@@ -19,15 +39,15 @@ const inputMsg = ref('')
     </div>
 
     <div class="flex-1 overflow-auto border-2 border-white-alpha-40 border-round p-2">
-      <ScrollPanel class="w-full h-full">
+      <ScrollPanel ref="scrollPanelRef" class="w-full h-full">
       <MsgItem v-for="(item,idx) in msgList" :message="item" :key="idx"/>
       </ScrollPanel>
     </div>
 
     <div class="flex-grow flex flex-column mt-2">
       <div class="flex-shrink-0 text-center flex w-full">
-        <InputText type="text" class="flex-grow-1 bg-black-alpha-50" v-model="inputMsg"/>
-        <Button icon="pi pi-send" class="ml-2"/>
+        <InputText type="text" class="flex-grow-1 bg-black-alpha-50" v-model="inputMsg" @keyup.enter="doChat"/>
+        <Button icon="pi pi-send" class="ml-2" @click="doChat"/>
       </div>
 
     </div>

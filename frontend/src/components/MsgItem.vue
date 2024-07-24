@@ -16,8 +16,8 @@ const positionClass = computed(() => {
     <div class="w-2 h-12 border-circle mr-4">
       <i class="pi pi-user"></i>
     </div>
-    <div class="bg-gray-200 border-round p-1 w-full">
-      <p class="text-gray-800 text-left pl-2">
+    <div class="bg-gray-200 border-round px-1 w-full">
+      <p class="text-gray-800 text-left pl-2 text-xl">
         {{ message.content }}
       </p>
     </div>
