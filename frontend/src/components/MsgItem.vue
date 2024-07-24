@@ -17,7 +17,7 @@ const positionClass = computed(() => {
       <i class="pi pi-user"></i>
     </div>
     <div class="bg-black-alpha-20 border-round px-1 w-full">
-      <p class="text-gray-800 text-left pl-2 text-xl">
+      <p class="text-gray-800 text-left pl-2 text-xl white-space-normal">
         {{ message.content }}
       </p>
     </div>
