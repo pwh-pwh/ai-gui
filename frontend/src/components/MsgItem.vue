@@ -2,6 +2,8 @@
 import {computed} from "vue";
 import {Message} from "../types/Message";
 import Avatar from 'primevue/avatar';
+
+
 const props = defineProps<{ message: Message }>()
 const positionClass = computed(() => {
   if (props.message.userType === "assistant") {
@@ -17,6 +19,10 @@ const avatarImg = computed(() => {
     return "https://s3.bmp.ovh/imgs/2024/07/25/f214b677e17f25f3.png"
   }
 })
+
+const copyText = () => {
+  navigator.clipboard.writeText(props.message.content)
+}
 </script>
 
 <template>
@@ -28,7 +34,7 @@ const avatarImg = computed(() => {
       <p class="text-red-800 text-left pl-2 text-xl white-space-normal">
         {{ message.content }}
       </p>
-      <i v-if="message.userType === 'assistant'" v-tooltip="'copy text'" class="pi pi-copy text-gray-800 fixed right-0 mr-5" style="font-size: 1rem"></i>
+      <i @click="copyText" v-if="message.userType === 'assistant'" v-tooltip="'copy text'" class="pi pi-copy text-gray-800 fixed right-0 mr-5" style="font-size: 1rem"></i>
     </div>
   </div>
 </template>

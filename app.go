@@ -3,8 +3,6 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/lxn/win"
-	"syscall"
 )
 
 // App struct
@@ -21,9 +19,7 @@ func NewApp() *App {
 // so we can call the runtime methods
 func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
-	wn, _ := syscall.UTF16PtrFromString("wailsdemo")
-	hwnd := win.FindWindow(nil, wn)
-	win.SetWindowLong(hwnd, win.GWL_EXSTYLE, win.GetWindowLong(hwnd, win.GWL_EXSTYLE)|win.WS_EX_LAYERED)
+	InitWithApp()
 }
 
 // Greet returns a greeting for the given name
