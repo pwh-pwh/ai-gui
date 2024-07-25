@@ -1,19 +1,17 @@
-# README
+# Ai-Gui
 
-## About
+## 关于
 
-This is the official Wails Vue-TS template.
+一个使用wails开发的简易ai问答软件
 
-You can configure the project by editing `wails.json`. More information about the project settings can be found
-here: https://wails.io/docs/reference/project-config
+用于日常问答，可缩小图标，方便随时使用
 
-## Live Development
+## 配置
 
-To run in live development mode, run `wails dev` in the project directory. This will run a Vite development
-server that will provide very fast hot reload of your frontend changes. If you want to develop in a browser
-and have access to your Go methods, there is also a dev server that runs on http://localhost:34115. Connect
-to this in your browser, and you can call your Go code from devtools.
+关于如何配置
+1. 创建配置文件
+2. 填入相关key
 
-## Building
+## 效果
 
-To build a redistributable, production mode package, use `wails build`.
+效果图如下:
