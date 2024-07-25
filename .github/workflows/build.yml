@@ -23,7 +23,7 @@ jobs:
           - name: 'App'
             platform:  'windows/amd64'
             os: 'windows-latest'
-          - name: 'App'
+          - name: 'wailsdemo'
             platform:  'darwin/universal'
             os: 'macos-latest'
 
