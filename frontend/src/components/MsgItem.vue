@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import {computed} from "vue";
-import {Message} from "../types/Message";
 import Avatar from 'primevue/avatar';
+import {types} from "../../wailsjs/go/models";
+import Message = types.Message;
 
 
 const props = defineProps<{ message: Message }>()

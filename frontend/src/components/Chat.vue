@@ -1,32 +1,47 @@
 <script setup lang="ts">
 
 import MsgItem from "./MsgItem.vue";
-import {nextTick, onMounted, reactive, ref, watch} from "vue";
-import {Message} from "../types/Message";
+import {nextTick, onMounted, reactive, ref, toRaw, watch} from "vue";
 import ScrollPanel from "primevue/scrollpanel";
 import {BrowserOpenURL, Quit} from "../../wailsjs/runtime";
-import {is} from "@babel/types";
+import {DoChat} from "../../wailsjs/go/main/App";
+import {types} from "../../wailsjs/go/models";
+import Message = types.Message;
 
 const msgList = reactive<Message[]>([{content: 'hello', userType: 'user', id: '1'},
   {content: 'how are you', userType: 'assistant', id: '2'}])
 const inputMsg = ref('')
 const isShrink = ref(false)
+const helpMsg = ref('/help: show this message\n/clear: clear messages\n')
 const doChat = () => {
   if (!dispatchMsg(inputMsg.value)) {
+    inputMsg.value = ''
     return
   }
+
   //生成id
   const id = Date.now().toString(16)
   msgList.push({content: inputMsg.value, userType: 'user', id: id})
+  const cList = msgList.filter(msg => msg.id !== 'tool')
+  msgList.push({content: '正在思考...', userType: 'assistant', id: id})
+  DoChat(cList).then(res => {
+    msgList[msgList.length - 1].content = res
+  })
   inputMsg.value = ''
 }
 
 const dispatchMsg = (msg: string):boolean =>  {
-  if (msg === '/clear') {
-    msgList.length = 0
-    return false
+  switch (msg) {
+    case '/clear':
+      msgList.length = 0
+      return false
+    case '/help':
+      msgList.push({content: inputMsg.value, userType: 'user', id: 'tool'})
+      msgList.push({content: helpMsg.value, userType: 'assistant', id: 'tool'})
+      return false
+    default:
+      return true
   }
-  return true
 }
 
 const scrollPanelRef = ref()
