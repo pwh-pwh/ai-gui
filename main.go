@@ -3,6 +3,7 @@ package main
 import (
 	"embed"
 	"github.com/wailsapp/wails/v2/pkg/options/mac"
+	"github.com/wailsapp/wails/v2/pkg/options/windows"
 
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/options"
@@ -20,7 +21,7 @@ func main() {
 	err := wails.Run(&options.App{
 		Title:  "wailsdemo",
 		Width:  500,
-		Height: 768,
+		Height: 668,
 		AssetServer: &assetserver.Options{
 			Assets: assets,
 		},
@@ -29,13 +30,17 @@ func main() {
 		Bind: []interface{}{
 			app,
 		},
-		Frameless: false,
+		Frameless: true,
 		Mac: &mac.Options{
 			TitleBar:             mac.TitleBarHiddenInset(),
 			WebviewIsTransparent: true,
 			WindowIsTranslucent:  false,
 		},
 		AlwaysOnTop: true,
+		Windows: &windows.Options{
+			WebviewIsTransparent: true,
+			WindowIsTranslucent:  false,
+		},
 	})
 
 	if err != nil {

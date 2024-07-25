@@ -5,10 +5,12 @@ import {nextTick, onMounted, reactive, ref, watch} from "vue";
 import {Message} from "../types/Message";
 import ScrollPanel from "primevue/scrollpanel";
 import {BrowserOpenURL} from "../../wailsjs/runtime";
+import {is} from "@babel/types";
 
 const msgList = reactive<Message[]>([{content: 'hello', userType: 'user', id: '1'},
   {content: 'how are you', userType: 'assistant', id: '2'}])
 const inputMsg = ref('')
+const isShrink = ref(false)
 const doChat = () => {
   //生成id
   const id = Date.now().toString(16)
@@ -25,6 +27,7 @@ const scrollToBottom = () => {
 const toMyGithub = () => {
   BrowserOpenURL('https://github.com/pwh-pwh/ai-gui')
 }
+
 watch(msgList, () => {
   scrollToBottom()
 })
@@ -36,13 +39,18 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="flex text-center flex-column h-full">
+  <div class="flex text-center flex-column h-full" v-if="!isShrink">
     <div class="flex-shrink-0 text-center cursor-move select-none" style="--wails-draggable:drag">
-      <div class="textRedtoBlue text-3xl font-bold cursor-move select-none">
-        Ai-Gui
-      </div>
-      <div class="absolute right-0 top-0 mt-5 mr-5 pt-3">
-        <i class="pi pi-github cursor-pointer" style="font-size: 1.5rem" @click="toMyGithub"></i>
+      <div class="flex-row flex justify-content-between">
+        <div>
+          <i @click="isShrink = true" class="pi pi-arrow-down-left-and-arrow-up-right-to-center cursor-pointer text-gray-800" style="font-size: 1.5rem"></i>
+        </div>
+        <div class="textRedtoBlue text-3xl font-bold cursor-move select-none">
+          Ai-Gui
+        </div>
+        <div>
+          <i class="pi pi-github cursor-pointer text-gray-800" style="font-size: 1.5rem" @click="toMyGithub"></i>
+        </div>
       </div>
 
     </div>
@@ -60,6 +68,9 @@ onMounted(() => {
       </div>
 
     </div>
+  </div>
+  <div v-else class="absolute top-0 left-0 ml-5 mt-4">
+    <img src="../assets/images/img2.png" alt="" class="w-2rem h-2rem cursor-move" @click="isShrink=false" style="--wails-draggable:drag"/>
   </div>
 </template>
 
