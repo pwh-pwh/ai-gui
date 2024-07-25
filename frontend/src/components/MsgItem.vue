@@ -28,6 +28,7 @@ const avatarImg = computed(() => {
       <p class="text-red-800 text-left pl-2 text-xl white-space-normal">
         {{ message.content }}
       </p>
+      <i v-if="message.userType === 'assistant'" v-tooltip="'copy text'" class="pi pi-copy text-gray-800 fixed right-0 mr-5" style="font-size: 1rem"></i>
     </div>
   </div>
 </template>

@@ -45,7 +45,7 @@ onMounted(() => {
         <div>
           <i @click="isShrink = true" class="pi pi-arrow-down-left-and-arrow-up-right-to-center cursor-pointer text-gray-800" style="font-size: 1.5rem"></i>
         </div>
-        <div class="textRedtoBlue text-3xl font-bold cursor-move select-none">
+        <div class="cool-title text-3xl font-bold cursor-move select-none">
           Ai-Gui
         </div>
         <div>

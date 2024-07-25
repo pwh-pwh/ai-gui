@@ -210,3 +210,29 @@ body {
 .glass {
     backdrop-filter: blur(20px);
 }
+
+.cool-title {
+    font-family: 'Arial', sans-serif;
+    font-size: 4em;
+    color: #fff;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #ff8a00, #e52e71, #007adf, #00ecbc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient 3s infinite;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.7);
+    position: relative;
+}
+
+.cool-title::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit;
+    filter: blur(20px);
+    z-index: -1;
+    opacity: 0.5;
+}
