@@ -69,8 +69,8 @@ onMounted(() => {
 
     </div>
   </div>
-  <div v-else class="absolute top-0 left-0 ml-5 mt-4">
-    <img src="../assets/images/img2.png" alt="" class="w-2rem h-2rem cursor-move" @click="isShrink=false" style="--wails-draggable:drag"/>
+  <div v-else class="absolute top-0 left-0 ml-5 mt-4 pointer-events-auto" @click="isShrink=false" style="--wails-draggable:drag">
+    <img src="../assets/images/img2.png" alt="" class="w-2rem h-2rem cursor-move select-none pointer-events-none" style="--wails-draggable:drag"/>
   </div>
 </template>
 
