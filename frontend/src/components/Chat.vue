@@ -4,7 +4,7 @@ import MsgItem from "./MsgItem.vue";
 import {nextTick, onMounted, reactive, ref, watch} from "vue";
 import {Message} from "../types/Message";
 import ScrollPanel from "primevue/scrollpanel";
-import {BrowserOpenURL} from "../../wailsjs/runtime";
+import {BrowserOpenURL, Quit} from "../../wailsjs/runtime";
 import {is} from "@babel/types";
 
 const msgList = reactive<Message[]>([{content: 'hello', userType: 'user', id: '1'},
@@ -22,6 +22,10 @@ const scrollToBottom = () => {
   nextTick(() => {
     scrollPanelRef.value.$refs.content.scrollTop = scrollPanelRef.value.$refs.content.scrollHeight
   })
+}
+
+const quitApp = () => {
+  Quit()
 }
 
 const toMyGithub = () => {
@@ -45,7 +49,7 @@ onMounted(() => {
         <div>
           <i @click="isShrink = true" class="pi pi-arrow-down-left-and-arrow-up-right-to-center cursor-pointer text-gray-800" style="font-size: 1.5rem"></i>
         </div>
-        <div class="cool-title text-3xl font-bold cursor-move select-none">
+        <div class="cool-title text-3xl font-bold cursor-move select-none" @dblclick="quitApp" >
           Ai-Gui
         </div>
         <div>
