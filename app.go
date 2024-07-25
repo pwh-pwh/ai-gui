@@ -2,9 +2,11 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"wailsdemo/service"
 	"wailsdemo/types"
+	"wailsdemo/utils"
 )
 
 // App struct
@@ -22,6 +24,12 @@ func NewApp() *App {
 // so we can call the runtime methods
 func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
+	exists := utils.FileExists("app.json")
+	if !exists {
+		conf := types.Config{}
+		jsonData, _ := json.Marshal(conf)
+		utils.WriteFile("app.json", jsonData)
+	}
 	a.chat = &service.EchoChat{}
 	InitWithApp()
 }
