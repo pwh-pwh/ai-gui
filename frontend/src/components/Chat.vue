@@ -12,11 +12,23 @@ const msgList = reactive<Message[]>([{content: 'hello', userType: 'user', id: '1
 const inputMsg = ref('')
 const isShrink = ref(false)
 const doChat = () => {
+  if (!dispatchMsg(inputMsg.value)) {
+    return
+  }
   //生成id
   const id = Date.now().toString(16)
   msgList.push({content: inputMsg.value, userType: 'user', id: id})
   inputMsg.value = ''
 }
+
+const dispatchMsg = (msg: string):boolean =>  {
+  if (msg === '/clear') {
+    msgList.length = 0
+    return false
+  }
+  return true
+}
+
 const scrollPanelRef = ref()
 const scrollToBottom = () => {
   nextTick(() => {
