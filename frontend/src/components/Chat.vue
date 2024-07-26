@@ -72,7 +72,7 @@ onMounted(() => {
 <template>
   <div class="flex text-center flex-column h-full" v-if="!isShrink">
     <div class="flex-shrink-0 text-center cursor-move select-none" style="--wails-draggable:drag">
-      <div class="flex-row flex justify-content-between">
+      <div class="flex-row flex justify-content-between scalein animation-delay-800 animation-iteration-1 animation-ease-in">
         <div>
           <i @click="isShrink = true" class="pi pi-arrow-down-left-and-arrow-up-right-to-center cursor-pointer text-gray-800" style="font-size: 1.5rem"></i>
         </div>
