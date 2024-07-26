@@ -14,7 +14,7 @@ const positionClass = computed(() => {
   }
 })
 const avatarImg = computed(() => {
-  if(props.message.userType === "user") {
+  if (props.message.userType === "user") {
     return "https://s3.bmp.ovh/imgs/2024/07/25/b82d96fabe6f83e1.png"
   } else {
     return "https://s3.bmp.ovh/imgs/2024/07/25/f214b677e17f25f3.png"
@@ -37,9 +37,10 @@ const copyText = () => {
       <p class="text-red-800 text-left pl-2 text-xl white-space-normal">
         {{ message.content }}
       </p>
-      <!--      <div class="flex justify-content-end align-items-center">
-              <i @click="copyText" v-if="message.userType === 'assistant'" v-tooltip="'copy text'" class="pi pi-copy text-gray-800 mr-2 mb-2" style="font-size: 1rem"></i>
-            </div>-->
+      <div class="flex justify-content-end align-items-center">
+        <i @click="copyText" v-if="message.userType === 'assistant'" v-tooltip="'copy text'"
+           class="pi pi-copy text-gray-800 mr-2 mb-2" style="font-size: 1rem"></i>
+      </div>
     </div>
   </div>
 </template>

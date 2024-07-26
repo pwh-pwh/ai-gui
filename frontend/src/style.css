@@ -169,7 +169,7 @@ html {
     background: linear-gradient(45deg, rgba(255, 110, 196, 0.4), rgba(120, 115, 245, 0.39), rgba(36, 198, 220, 0.4), rgba(212, 252, 121, 0.4), #96e6a1);
     background-size: 400% 400%;
     animation: gradient 25s ease infinite;
-    z-index: -1;
+    z-index: 0;
 }
 
 body {
