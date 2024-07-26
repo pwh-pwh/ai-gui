@@ -27,16 +27,34 @@ func NewApp() *App {
 func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
 	exists := utils.FileExists("app.json")
+	conf := types.Config{}
 	if !exists {
-		conf := types.Config{}
 		jsonData, _ := json.Marshal(conf)
 		utils.WriteFile("app.json", jsonData)
 		a.status = fmt.Sprintf("应用初始化，请配置:%s%capp.json 配置文件", utils.GetCurrentPath(), os.PathSeparator)
 		utils.OpenFolder(utils.GetCurrentPath())
+	} else {
+		a.status = fmt.Sprintf("应用启动，成功读取路径:%s%capp.json 配置文件", utils.GetCurrentPath(), os.PathSeparator)
+		bytesData, _ := utils.ReadFile("app.json")
+		err := json.Unmarshal(bytesData, &conf)
+		if err != nil {
+			a.status = fmt.Sprintf("应用启动，读取配置文件失败:%s", err.Error())
+		}
 	}
-	a.status = fmt.Sprintf("应用启动，成功读取路径:%s%capp.json 配置文件", utils.GetCurrentPath(), os.PathSeparator)
+
 	a.chat = &service.EchoChat{}
 	InitWithApp()
+}
+
+func (a *App) ReloadConf() string {
+	conf := types.Config{}
+	bytesData, _ := utils.ReadFile("app.json")
+	err := json.Unmarshal(bytesData, &conf)
+	if err != nil {
+		a.status = fmt.Sprintf("重载配置文件失败:%s", err.Error())
+	}
+
+	return "配置重载完成"
 }
 
 // Greet returns a greeting for the given name
@@ -50,4 +68,8 @@ func (a *App) GetStatus() string {
 
 func (a *App) DoChat(msg []types.Message) string {
 	return a.chat.Dochat(msg)
+}
+
+func (a *App) OpenConfigFolder() {
+	utils.OpenFolder(utils.GetCurrentPath())
 }

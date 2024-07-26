@@ -24,7 +24,7 @@
 }
 ```
 
-详细配置请参考[配置文件](https://github.com/pwh-pwh/ai-gui/blob/main/sample.json)
+详细配置介绍请参考[配置文件](https://github.com/pwh-pwh/ai-gui/blob/master/sample.json)
 
 ## 使用说明
 

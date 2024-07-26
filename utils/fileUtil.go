@@ -18,6 +18,10 @@ func WriteFile(filename string, data []byte) error {
 	return os.WriteFile(filename, data, 0644)
 }
 
+func ReadFile(filename string) ([]byte, error) {
+	return os.ReadFile(filename)
+}
+
 func GetCurrentPath() string {
 	dir, err := os.Getwd()
 	if err != nil {
