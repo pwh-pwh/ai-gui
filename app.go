@@ -32,6 +32,7 @@ func (a *App) startup(ctx context.Context) {
 		jsonData, _ := json.Marshal(conf)
 		utils.WriteFile("app.json", jsonData)
 		a.status = fmt.Sprintf("应用初始化，请配置:%s%capp.json 配置文件", utils.GetCurrentPath(), os.PathSeparator)
+		utils.OpenFolder(utils.GetCurrentPath())
 	}
 	a.status = fmt.Sprintf("应用启动，成功读取路径:%s%capp.json 配置文件", utils.GetCurrentPath(), os.PathSeparator)
 	a.chat = &service.EchoChat{}

@@ -1,6 +1,10 @@
 package utils
 
-import "os"
+import (
+	"os"
+	"os/exec"
+	"runtime"
+)
 
 func FileExists(filename string) bool {
 	info, err := os.Stat(filename)
@@ -20,4 +24,18 @@ func GetCurrentPath() string {
 		return ""
 	}
 	return dir
+}
+
+func OpenFolder(path string) error {
+	osType := runtime.GOOS
+	switch osType {
+	case "windows":
+		return exec.Command("explorer", path).Start()
+	case "linux":
+		return exec.Command("xdg-open", path).Start()
+	case "darwin":
+		return exec.Command("open", path).Start()
+	default:
+		return nil
+	}
 }
