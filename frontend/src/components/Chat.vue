@@ -92,7 +92,7 @@ onMounted(() => {
     </div>
 
     <div class="flex-1 overflow-auto border-round p-2 fadeinleft animation-delay-800 animation-iteration-1 animation-ease-in">
-      <ScrollPanel ref="scrollPanelRef" class="w-full h-full">
+      <ScrollPanel ref="scrollPanelRef" class="w-full h-full overflow-x-hidden">
       <MsgItem v-for="(item,idx) in msgList" :message="item" :key="idx"/>
       </ScrollPanel>
     </div>
