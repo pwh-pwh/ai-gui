@@ -3,11 +3,13 @@
 import Chat from "./components/Chat.vue";
 import Toast from "primevue/toast";
 import {useToast} from "primevue/usetoast";
-import {provide} from "vue";
+import {onMounted, provide} from "vue";
+import {GetStatus} from "../wailsjs/go/main/App";
 const toast = useToast()
 const showInfoToast = (msg:string,summary:string = 'info',duration:number = 3000) => {
   toast.add({ severity: 'info', summary: summary, detail: msg, life: duration });
 }
+
 provide('showInfoToast',showInfoToast)
 </script>
 

@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"os"
 	"wailsdemo/service"
 	"wailsdemo/types"
 	"wailsdemo/utils"
@@ -11,8 +12,9 @@ import (
 
 // App struct
 type App struct {
-	ctx  context.Context
-	chat service.Chat
+	ctx    context.Context
+	chat   service.Chat
+	status string
 }
 
 // NewApp creates a new App application struct
@@ -29,7 +31,9 @@ func (a *App) startup(ctx context.Context) {
 		conf := types.Config{}
 		jsonData, _ := json.Marshal(conf)
 		utils.WriteFile("app.json", jsonData)
+		a.status = fmt.Sprintf("应用初始化，请配置:%s%capp.json 配置文件", utils.GetCurrentPath(), os.PathSeparator)
 	}
+	a.status = fmt.Sprintf("应用启动，成功读取路径:%s%capp.json 配置文件", utils.GetCurrentPath(), os.PathSeparator)
 	a.chat = &service.EchoChat{}
 	InitWithApp()
 }
@@ -37,6 +41,10 @@ func (a *App) startup(ctx context.Context) {
 // Greet returns a greeting for the given name
 func (a *App) Greet(name string) string {
 	return fmt.Sprintf("Hello %s, It's show time!", name)
+}
+
+func (a *App) GetStatus() string {
+	return a.status
 }
 
 func (a *App) DoChat(msg []types.Message) string {

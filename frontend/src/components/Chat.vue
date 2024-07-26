@@ -1,10 +1,10 @@
 <script setup lang="ts">
 
 import MsgItem from "./MsgItem.vue";
-import {nextTick, onMounted, reactive, ref, toRaw, watch} from "vue";
+import {inject, nextTick, onMounted, reactive, ref, toRaw, watch} from "vue";
 import ScrollPanel from "primevue/scrollpanel";
 import {BrowserOpenURL, Quit} from "../../wailsjs/runtime";
-import {DoChat} from "../../wailsjs/go/main/App";
+import {DoChat, GetStatus} from "../../wailsjs/go/main/App";
 import {types} from "../../wailsjs/go/models";
 import Message = types.Message;
 
@@ -59,11 +59,16 @@ const toMyGithub = () => {
   BrowserOpenURL('https://github.com/pwh-pwh/ai-gui')
 }
 
+const showInfoToast = inject<any>('showInfoToast')
+
 watch(msgList, () => {
   scrollToBottom()
 })
 
 onMounted(() => {
+  GetStatus().then((res:string) => {
+    showInfoToast(res,'初始化信息',6000)
+  })
   scrollToBottom()
 })
 
