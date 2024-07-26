@@ -8,4 +8,5 @@ type Config struct {
 type GptConfig struct {
 	BaseUrl string `json:"baseUrl"`
 	ApiKey  string `json:"apiKey"`
+	Model   string `json:"model"`
 }

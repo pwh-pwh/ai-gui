@@ -41,8 +41,7 @@ func (a *App) startup(ctx context.Context) {
 			a.status = fmt.Sprintf("应用启动，读取配置文件失败:%s", err.Error())
 		}
 	}
-
-	a.chat = &service.EchoChat{}
+	a.chat = service.GetChatByConfig(conf)
 	InitWithApp()
 }
 
@@ -53,7 +52,7 @@ func (a *App) ReloadConf() string {
 	if err != nil {
 		a.status = fmt.Sprintf("重载配置文件失败:%s", err.Error())
 	}
-
+	a.chat = service.GetChatByConfig(conf)
 	return "配置重载完成"
 }
 

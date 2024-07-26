@@ -6,6 +6,7 @@ toolchain go1.22.5
 
 require (
 	github.com/lxn/win v0.0.0-20210218163916-a377121e959e
+	github.com/sashabaranov/go-openai v1.27.0
 	github.com/wailsapp/wails/v2 v2.9.1
 )
 

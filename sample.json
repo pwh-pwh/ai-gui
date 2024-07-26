@@ -3,6 +3,7 @@
 //  gpt配置
   "gpt": {
     "baseUrl": "", //这里填入你的gpt api的BaseUrl
-    "apiKey": ""   //这里填入你的gpt api的ApiKey,也就是token
+    "apiKey": "",   //这里填入你的gpt api的ApiKey,也就是token
+    "model": ""   //这里填入你的gpt api的模型 ,默认gpt-3.5-turbo
   }
 }
