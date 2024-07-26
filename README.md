@@ -9,8 +9,22 @@
 ## 配置
 
 关于如何配置
-1. 创建配置文件
-2. 填入相关key
+
+> 首次启动会自动创建配置文件并打开所在文件夹
+
+配置文件案例
+
+```json
+{
+  "botType": "gpt",
+  "gpt": {
+    "baseUrl": "api.openai.com", 
+    "apiKey": "sk-xxx" 
+  }
+}
+```
+
+详细配置请参考[配置文件](https://github.com/pwh-pwh/ai-gui/blob/main/sample.json)
 
 ## 使用说明
 

@@ -1,0 +1,8 @@
+{
+  "botType": "gpt", //这里填入你的机器人类型
+//  gpt配置
+  "gpt": {
+    "baseUrl": "", //这里填入你的gpt api的BaseUrl
+    "apiKey": ""   //这里填入你的gpt api的ApiKey,也就是token
+  }
+}
