@@ -6,6 +6,7 @@ import Tooltip from "primevue/tooltip";
 import 'primeflex/primeflex.css';
 import './style.css';
 import 'primeicons/primeicons.css'
+import ToastService from 'primevue/toastservice';
 
 
 const app = createApp(App)
@@ -15,4 +16,5 @@ app.use(PrimeVue, {
     }
 })
 app.directive('tooltip', Tooltip)
+app.use(ToastService)
 app.mount('#app')

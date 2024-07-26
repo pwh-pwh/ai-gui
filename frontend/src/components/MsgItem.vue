@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {computed} from "vue";
+import {computed, inject} from "vue";
 import Avatar from 'primevue/avatar';
 import {types} from "../../wailsjs/go/models";
 import Message = types.Message;
@@ -20,9 +20,11 @@ const avatarImg = computed(() => {
     return "https://s3.bmp.ovh/imgs/2024/07/25/f214b677e17f25f3.png"
   }
 })
+const showInfoToast = inject<any>('showInfoToast')
 
 const copyText = () => {
   navigator.clipboard.writeText(props.message.content)
+  showInfoToast('复制到剪切板啦~')
 }
 </script>
 
