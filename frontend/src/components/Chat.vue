@@ -72,7 +72,7 @@ onMounted(() => {
 <template>
   <div class="flex text-center flex-column h-full" v-if="!isShrink">
     <div class="flex-shrink-0 text-center cursor-move select-none" style="--wails-draggable:drag">
-      <div class="flex-row flex justify-content-between scalein animation-delay-800 animation-iteration-1 animation-ease-in">
+      <div class="flex-row flex justify-content-between fadeindown animation-delay-800 animation-iteration-1 animation-ease-in">
         <div>
           <i @click="isShrink = true" class="pi pi-arrow-down-left-and-arrow-up-right-to-center cursor-pointer text-gray-800" style="font-size: 1.5rem"></i>
         </div>
@@ -86,13 +86,13 @@ onMounted(() => {
 
     </div>
 
-    <div class="flex-1 overflow-auto border-round p-2">
+    <div class="flex-1 overflow-auto border-round p-2 fadeinleft animation-delay-800 animation-iteration-1 animation-ease-in">
       <ScrollPanel ref="scrollPanelRef" class="w-full h-full">
       <MsgItem v-for="(item,idx) in msgList" :message="item" :key="idx"/>
       </ScrollPanel>
     </div>
 
-    <div class="flex-grow flex flex-column mt-2">
+    <div class="flex-grow flex flex-column mt-2 fadeoutdown animation-delay-800 animation-iteration-1 animation-ease-in">
       <div class="flex-shrink-0 text-center flex w-full">
         <InputText type="text" class="flex-grow-1 bg-white-alpha-10" v-model="inputMsg" @keyup.enter="doChat"/>
         <Button icon="pi pi-send" class="ml-2" @click="doChat"/>
