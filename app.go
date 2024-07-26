@@ -30,8 +30,12 @@ func (a *App) startup(ctx context.Context) {
 	conf := types.Config{}
 	if !exists {
 		jsonData, _ := json.Marshal(conf)
-		utils.WriteFile("app.json", jsonData)
-		a.status = fmt.Sprintf("应用初始化，请配置:%s%capp.json 配置文件", utils.GetCurrentPath(), os.PathSeparator)
+		err := utils.WriteFile("app.json", jsonData)
+		if err != nil {
+			a.status = fmt.Sprintf("无法在目录:%s%c创建app.json 配置文件，请手动创建", utils.GetCurrentPath(), os.PathSeparator)
+		} else {
+			a.status = fmt.Sprintf("应用初始化，请配置:%s%capp.json 配置文件", utils.GetCurrentPath(), os.PathSeparator)
+		}
 		utils.OpenFolder(utils.GetCurrentPath())
 	} else {
 		a.status = fmt.Sprintf("应用启动，成功读取路径:%s%capp.json 配置文件", utils.GetCurrentPath(), os.PathSeparator)
