@@ -20,6 +20,11 @@
   "gpt": {
     "baseUrl": "api.openai.com", 
     "apiKey": "sk-xxx" 
+  },
+  "qf": {
+    "accessKey": "",
+    "secretKey": "",
+    "model": ""
   }
 }
 ```
@@ -37,3 +42,13 @@
 ## 效果
 
 效果图如下:
+
+#### mac系统效果
+
+全屏
+
+![图1](./images/macfull.png)
+
+小图标
+
+![图2](./images/macicon.png)

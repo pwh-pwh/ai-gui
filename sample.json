@@ -5,5 +5,10 @@
     "baseUrl": "", //这里填入你的gpt api的BaseUrl
     "apiKey": "",   //这里填入你的gpt api的ApiKey,也就是token
     "model": ""   //这里填入你的gpt api的模型 ,默认gpt-3.5-turbo
+  },
+  "qf": {  // 千帆配置
+    "accessKey": "",
+    "secretKey": "",
+    "model": ""
   }
 }
