@@ -8,10 +8,11 @@ import {DoChat, GetStatus, OpenConfigFolder, ReloadConf} from "../../wailsjs/go/
 import {types} from "../../wailsjs/go/models";
 import Message = types.Message;
 
-const msgList = reactive<Message[]>([{content: 'hello', userType: 'user', id: '1'},
-  {content: 'how are you', userType: 'assistant', id: '2'}])
+
 const inputMsg = ref('')
 const helpMsg = ref('/help: 显示帮助信息\n/clear: 清除历史信息\n/loadconf: 重新加载配置文件\n/opconf: 打开配置文件夹')
+const msgList = reactive<Message[]>([{content: '欢迎使用Ai-Gui,用法介绍如下', userType: 'user', id: 'tool'},
+  {content: helpMsg.value, userType: 'assistant', id: 'tool'}])
 const doChat = () => {
   if (!dispatchMsg(inputMsg.value)) {
     inputMsg.value = ''
