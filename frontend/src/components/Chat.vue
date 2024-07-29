@@ -139,10 +139,6 @@ onMounted(() => {
     transform: scale(0.2) rotate(0deg);
     opacity: 0.3;
   }
-  50% {
-    transform: scale(1.5) rotate(180deg);
-    opacity: 1;
-  }
   100% {
     transform: scale(1) rotate(360deg);
     opacity: 1;
