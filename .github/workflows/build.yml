@@ -20,10 +20,10 @@ jobs:
           - name: 'App'
             platform:  'linux/amd64'
             os: 'ubuntu-latest'
-          - name: 'App.exe'
+          - name: 'ai-gui.exe'
             platform:  'windows/amd64'
             os: 'windows-latest'
-          - name: 'wailsdemo'
+          - name: 'ai-gui'
             platform:  'darwin/universal'
             os: 'macos-latest'
 

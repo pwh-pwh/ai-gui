@@ -29,6 +29,7 @@ func NewApp() *App {
 // so we can call the runtime methods
 func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
+	InitWithApp()
 	utils.InitConfigPath()
 	fullFilePath := filepath.Join(utils.GetConfigPath(), CONFIG_FILE_NAME)
 	exists := utils.FileExists(fullFilePath)
@@ -51,7 +52,6 @@ func (a *App) startup(ctx context.Context) {
 		}
 	}
 	a.chat = service.GetChatByConfig(conf)
-	InitWithApp()
 }
 
 // 对接 /loadconf

@@ -9,7 +9,7 @@ import (
 )
 
 func InitWithApp() {
-	wn, _ := syscall.UTF16PtrFromString("wailsdemo")
+	wn, _ := syscall.UTF16PtrFromString("Ai-Gui")
 	hwnd := win.FindWindow(nil, wn)
 	win.SetWindowLong(hwnd, win.GWL_EXSTYLE, win.GetWindowLong(hwnd, win.GWL_EXSTYLE)|win.WS_EX_LAYERED)
 }
