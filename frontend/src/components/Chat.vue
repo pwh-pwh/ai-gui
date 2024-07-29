@@ -91,7 +91,7 @@ onMounted(() => {
 
     </div>
 
-    <div class="flex-1 overflow-auto border-round p-2 fadeinleft animation-delay-800 animation-iteration-1 animation-ease-in">
+    <div class="flex-1 overflow-auto border-round p-2 grow">
       <ScrollPanel ref="scrollPanelRef" class="w-full h-full overflow-x-hidden">
       <MsgItem v-for="(item,idx) in msgList" :message="item" :key="idx"/>
       </ScrollPanel>
@@ -112,4 +112,22 @@ onMounted(() => {
 
 <style scoped>
 
+.grow {
+  animation: grow 0.8s linear;
+}
+
+@keyframes grow {
+  0% {
+    transform: scale(0.2) rotate(0deg);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.5) rotate(180deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+    opacity: 1;
+  }
+}
 </style>
