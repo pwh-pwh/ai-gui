@@ -3,7 +3,7 @@
 import MsgItem from "./MsgItem.vue";
 import {inject, nextTick, onMounted, reactive, ref, toRaw, watch} from "vue";
 import ScrollPanel from "primevue/scrollpanel";
-import {BrowserOpenURL, Quit} from "../../wailsjs/runtime";
+import {BrowserOpenURL, Quit, WindowGetSize, WindowSetSize} from "../../wailsjs/runtime";
 import {DoChat, GetStatus, OpenConfigFolder, ReloadConf} from "../../wailsjs/go/main/App";
 import {types} from "../../wailsjs/go/models";
 import Message = types.Message;
@@ -73,6 +73,22 @@ const toMyGithub = () => {
 
 const showInfoToast = inject<any>('showInfoToast')
 
+const shrink = () => {
+  isShrink.value = true
+  WindowSetSize(100,100)
+  WindowGetSize().then((res) => {
+    console.log(res)
+  })
+}
+
+const enlarge = () => {
+  isShrink.value = false
+  WindowSetSize(500,668)
+  WindowGetSize().then((res) => {
+    console.log(res)
+  })
+}
+
 watch(msgList, () => {
   scrollToBottom()
 })
@@ -92,7 +108,7 @@ onMounted(() => {
       <div
           class="flex-row flex justify-content-between fadeindown animation-delay-800 animation-iteration-1 animation-ease-in">
         <div>
-          <i @click="isShrink = true"
+          <i @click="shrink"
              class="pi pi-arrow-down-left-and-arrow-up-right-to-center cursor-pointer text-gray-800"
              style="font-size: 1.5rem"></i>
         </div>
@@ -121,7 +137,7 @@ onMounted(() => {
 
     </div>
   </div>
-  <div v-else class="absolute top-0 left-0 ml-5 mt-4 pointer-events-auto" @click="isShrink=false"
+  <div v-else class="absolute top-0 left-0 ml-5 mt-4 pointer-events-auto" @click="enlarge"
        style="--wails-draggable:drag">
     <img src="../assets/images/img2.png" alt="" class="w-2rem h-2rem cursor-move select-none pointer-events-none"
          style="--wails-draggable:drag"/>
