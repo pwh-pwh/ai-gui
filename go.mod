@@ -1,4 +1,4 @@
-module wailsdemo
+module github.com/pwh-pwh/ai-gui
 
 go 1.21
 

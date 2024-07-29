@@ -4,11 +4,11 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"github.com/pwh-pwh/ai-gui/service"
+	"github.com/pwh-pwh/ai-gui/types"
+	"github.com/pwh-pwh/ai-gui/utils"
 	"os"
 	"path/filepath"
-	"wailsdemo/service"
-	"wailsdemo/types"
-	"wailsdemo/utils"
 )
 
 const CONFIG_FILE_NAME = "app.json"

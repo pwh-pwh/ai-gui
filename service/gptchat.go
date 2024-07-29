@@ -3,8 +3,8 @@ package service
 import (
 	"context"
 	"errors"
+	"github.com/pwh-pwh/ai-gui/types"
 	"github.com/sashabaranov/go-openai"
-	"wailsdemo/types"
 )
 
 type GptChat struct {

@@ -1,6 +1,6 @@
 package service
 
-import "wailsdemo/types"
+import "github.com/pwh-pwh/ai-gui/types"
 
 type EchoChat struct {
 }
