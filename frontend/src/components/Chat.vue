@@ -11,7 +11,6 @@ import Message = types.Message;
 const msgList = reactive<Message[]>([{content: 'hello', userType: 'user', id: '1'},
   {content: 'how are you', userType: 'assistant', id: '2'}])
 const inputMsg = ref('')
-const isShrink = ref(false)
 const helpMsg = ref('/help: 显示帮助信息\n/clear: 清除历史信息\n/loadconf: 重新加载配置文件\n/opconf: 打开配置文件夹')
 const doChat = () => {
   if (!dispatchMsg(inputMsg.value)) {
@@ -73,21 +72,8 @@ const toMyGithub = () => {
 
 const showInfoToast = inject<any>('showInfoToast')
 
-const shrink = () => {
-  isShrink.value = true
-  WindowSetSize(100,100)
-  WindowGetSize().then((res) => {
-    console.log(res)
-  })
-}
+const shrink = inject<any>('shrink')
 
-const enlarge = () => {
-  isShrink.value = false
-  WindowSetSize(500,668)
-  WindowGetSize().then((res) => {
-    console.log(res)
-  })
-}
 
 watch(msgList, () => {
   scrollToBottom()
@@ -103,7 +89,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="flex text-center flex-column h-full" v-if="!isShrink">
+  <div class="flex text-center flex-column h-full">
     <div class="flex-shrink-0 text-center cursor-move select-none" style="--wails-draggable:drag">
       <div
           class="flex-row flex justify-content-between fadeindown animation-delay-800 animation-iteration-1 animation-ease-in">
@@ -136,11 +122,6 @@ onMounted(() => {
       </div>
 
     </div>
-  </div>
-  <div v-else class="absolute top-0 left-0 ml-5 mt-4 pointer-events-auto" @click="enlarge"
-       style="--wails-draggable:drag">
-    <img src="../assets/images/img2.png" alt="" class="w-2rem h-2rem cursor-move select-none pointer-events-none"
-         style="--wails-draggable:drag"/>
   </div>
 </template>
 
