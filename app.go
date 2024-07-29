@@ -54,7 +54,7 @@ func (a *App) startup(ctx context.Context) {
 	InitWithApp()
 }
 
-// todo 对接 /loadconf
+// 对接 /loadconf
 func (a *App) ReloadConf() string {
 	conf := types.Config{}
 	bytesData, _ := utils.ReadFile(filepath.Join(utils.GetConfigPath(), CONFIG_FILE_NAME))
@@ -79,7 +79,7 @@ func (a *App) DoChat(msg []types.Message) string {
 	return a.chat.Dochat(msg)
 }
 
-// todo 对接 /opconf
+// 对接 /opconf
 func (a *App) OpenConfigFolder() {
 	utils.OpenFolder(utils.GetConfigPath())
 }
