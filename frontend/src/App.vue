@@ -32,6 +32,12 @@ const enlarge = () => {
 provide('isShrink',isShrink)
 provide('shrink',shrink)
 provide('showInfoToast',showInfoToast)
+
+onMounted(() => {
+  GetStatus().then((res: string) => {
+    showInfoToast(res, '初始化信息', 6000)
+  })
+})
 </script>
 
 <template>

@@ -80,9 +80,6 @@ watch(msgList, () => {
 })
 
 onMounted(() => {
-  GetStatus().then((res: string) => {
-    showInfoToast(res, '初始化信息', 6000)
-  })
   scrollToBottom()
 })
 
