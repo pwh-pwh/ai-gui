@@ -10,7 +10,8 @@ import Message = types.Message;
 
 
 const inputMsg = ref('')
-const helpMsg = ref('/help: 显示帮助信息\n/clear: 清除历史信息\n/loadconf: 重新加载配置文件\n/opconf: 打开配置文件夹')
+const helpMsg = ref('/help: 显示帮助信息\n/clear: 清除历史信息\n/loadconf: 重新加载配置文件\n/opconf: 打开配置文件夹\n' +
+    '/quit: 退出应用')
 const msgList = reactive<Message[]>([{content: '欢迎使用Ai-Gui,用法介绍如下', userType: 'user', id: 'tool'},
   {content: helpMsg.value, userType: 'assistant', id: 'tool'}])
 const doChat = () => {
@@ -51,6 +52,8 @@ const dispatchMsg = (msg: string): boolean => {
           showInfoToast('打开配置文件夹成功', '提示', 3000)
         })
       return false
+    case '/quit':
+      quitApp()
     default:
       return true
   }
