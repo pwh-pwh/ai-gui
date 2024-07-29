@@ -5,10 +5,13 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"path/filepath"
 	"wailsdemo/service"
 	"wailsdemo/types"
 	"wailsdemo/utils"
 )
+
+const CONFIG_FILE_NAME = "app.json"
 
 // App struct
 type App struct {
@@ -26,20 +29,22 @@ func NewApp() *App {
 // so we can call the runtime methods
 func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
-	exists := utils.FileExists("app.json")
+	utils.InitConfigPath()
+	fullFilePath := filepath.Join(utils.GetConfigPath(), CONFIG_FILE_NAME)
+	exists := utils.FileExists(fullFilePath)
 	conf := types.Config{}
 	if !exists {
 		jsonData, _ := json.Marshal(conf)
-		err := utils.WriteFile("app.json", jsonData)
+		err := utils.WriteFile(fullFilePath, jsonData)
 		if err != nil {
-			a.status = fmt.Sprintf("无法在目录:%s%c创建app.json 配置文件，请手动创建", utils.GetCurrentPath(), os.PathSeparator)
+			a.status = fmt.Sprintf("无法在目录:%s%c创建%s 配置文件，请手动创建", utils.GetConfigPath(), os.PathSeparator, CONFIG_FILE_NAME)
 		} else {
-			a.status = fmt.Sprintf("应用初始化，请配置:%s%capp.json 配置文件", utils.GetCurrentPath(), os.PathSeparator)
+			a.status = fmt.Sprintf("应用初始化，请配置:%s%c%s 配置文件", utils.GetConfigPath(), os.PathSeparator, CONFIG_FILE_NAME)
 		}
-		utils.OpenFolder(utils.GetCurrentPath())
+		utils.OpenFolder(utils.GetConfigPath())
 	} else {
-		a.status = fmt.Sprintf("应用启动，成功读取路径:%s%capp.json 配置文件", utils.GetCurrentPath(), os.PathSeparator)
-		bytesData, _ := utils.ReadFile("app.json")
+		a.status = fmt.Sprintf("应用启动，成功读取路径:%s%c%s 配置文件", utils.GetConfigPath(), os.PathSeparator, CONFIG_FILE_NAME)
+		bytesData, _ := utils.ReadFile(CONFIG_FILE_NAME)
 		err := json.Unmarshal(bytesData, &conf)
 		if err != nil {
 			a.status = fmt.Sprintf("应用启动，读取配置文件失败:%s", err.Error())
@@ -52,7 +57,7 @@ func (a *App) startup(ctx context.Context) {
 // todo 对接 /loadconf
 func (a *App) ReloadConf() string {
 	conf := types.Config{}
-	bytesData, _ := utils.ReadFile("app.json")
+	bytesData, _ := utils.ReadFile(filepath.Join(utils.GetConfigPath(), CONFIG_FILE_NAME))
 	err := json.Unmarshal(bytesData, &conf)
 	if err != nil {
 		a.status = fmt.Sprintf("重载配置文件失败:%s", err.Error())
@@ -76,5 +81,5 @@ func (a *App) DoChat(msg []types.Message) string {
 
 // todo 对接 /opconf
 func (a *App) OpenConfigFolder() {
-	utils.OpenFolder(utils.GetCurrentPath())
+	utils.OpenFolder(utils.GetConfigPath())
 }
