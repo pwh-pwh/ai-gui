@@ -16,6 +16,12 @@ func GetChatByConfig(conf types.Config) Chat {
 			return &ErrChat{errMsg: err.Error()}
 		}
 		return gptClient
+	case "qf":
+		qfClient, err := NewQfChat(conf.Qf)
+		if err != nil {
+			return &ErrChat{errMsg: err.Error()}
+		}
+		return qfClient
 	default:
 		return &ErrChat{errMsg: "botType配置不正确"}
 	}
