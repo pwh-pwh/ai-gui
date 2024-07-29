@@ -5,8 +5,8 @@ import Toast from "primevue/toast";
 import {useToast} from "primevue/usetoast";
 import {onMounted, provide, ref} from "vue";
 import {GetStatus} from "../wailsjs/go/main/App";
-import {WindowGetSize, WindowSetSize} from "../wailsjs/runtime";
-import {is} from "@babel/types";
+import {WindowGetPosition, WindowSetPosition, WindowSetSize} from "../wailsjs/runtime";
+
 const toast = useToast()
 const isShrink = ref(false)
 const showInfoToast = (msg:string,summary:string = 'info',duration:number = 3000) => {
@@ -16,17 +16,14 @@ const showInfoToast = (msg:string,summary:string = 'info',duration:number = 3000
 const shrink = () => {
   isShrink.value = true
   WindowSetSize(40,40)
-  WindowGetSize().then((res) => {
-    console.log(res)
+  WindowGetPosition().then((res) => {
+    WindowSetPosition(-15,res.y)
   })
 }
 
 const enlarge = () => {
   isShrink.value = false
   WindowSetSize(500,668)
-  WindowGetSize().then((res) => {
-    console.log(res)
-  })
 }
 
 provide('isShrink',isShrink)
