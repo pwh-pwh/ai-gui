@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@primevue/themes": "^4.0.0",
-    "anywhere": "^1.6.0",
     "primeflex": "^3.3.1",
     "primeicons": "^7.0.0",
     "primevue": "^4.0.0",
