@@ -34,9 +34,7 @@ const copyText = () => {
       <Avatar :image="avatarImg" shape="circle" size="large" @click="copyText" v-tooltip="'copy text'"/>
     </div>
     <div class="dybg border-round px-1 w-full">
-      <p class="text-red-800 text-left pl-2 text-xl white-space-normal">
-        {{ message.content }}
-      </p>
+      <p class="text-red-800 text-left pl-2 text-xl" style="white-space: pre-wrap" v-html="message.content" />
       <div class="flex justify-content-end align-items-center">
         <i @click="copyText" v-if="message.userType === 'assistant'" v-tooltip="'copy text'"
            class="pi pi-copy text-gray-800 mr-2 mb-2" style="font-size: 1rem"></i>
