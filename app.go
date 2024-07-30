@@ -45,7 +45,7 @@ func (a *App) startup(ctx context.Context) {
 		utils.OpenFolder(utils.GetConfigPath())
 	} else {
 		a.status = fmt.Sprintf("应用启动，成功读取路径:%s%c%s 配置文件", utils.GetConfigPath(), os.PathSeparator, CONFIG_FILE_NAME)
-		bytesData, _ := utils.ReadFile(CONFIG_FILE_NAME)
+		bytesData, _ := utils.ReadFile(filepath.Join(utils.GetConfigPath(), CONFIG_FILE_NAME))
 		err := json.Unmarshal(bytesData, &conf)
 		if err != nil {
 			a.status = fmt.Sprintf("应用启动，读取配置文件失败:%s", err.Error())
