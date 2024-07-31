@@ -8,12 +8,14 @@ import {DoChat, GetStatus, OpenConfigFolder, ReloadConf} from "../../wailsjs/go/
 import {types} from "../../wailsjs/go/models";
 import Message = types.Message;
 
-
+const {
+  msgList,helpMsg
+} = defineProps<{
+  msgList: Message[],
+  helpMsg: string
+}>()
 const inputMsg = ref('')
-const helpMsg = ref('/help: 显示帮助信息\n/clear: 清除历史信息\n/loadconf: 重新加载配置文件\n/opconf: 打开配置文件夹\n' +
-    '/quit: 退出应用')
-const msgList = reactive<Message[]>([{content: '欢迎使用Ai-Gui,用法介绍如下', userType: 'user', id: 'tool'},
-  {content: helpMsg.value, userType: 'assistant', id: 'tool'}])
+
 const doChat = () => {
   if (!dispatchMsg(inputMsg.value)) {
     inputMsg.value = ''
@@ -38,7 +40,7 @@ const dispatchMsg = (msg: string): boolean => {
       return false
     case '/help':
       msgList.push({content: inputMsg.value, userType: 'user', id: 'tool'})
-      msgList.push({content: helpMsg.value, userType: 'assistant', id: 'tool'})
+      msgList.push({content: helpMsg, userType: 'assistant', id: 'tool'})
       return false
     case '/loadconf':
       msgList.push({content: inputMsg.value, userType: 'user', id: 'tool'})
