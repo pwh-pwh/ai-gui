@@ -6,6 +6,8 @@
 
 用于日常问答，可缩小图标，方便随时使用
 
+目前gpt,千帆大模型，和支持openai协议的大模型，如星火，kimi,通义千问等
+
 技术栈：
 
 > wails + vue3 + ts + primevue + primeflex
