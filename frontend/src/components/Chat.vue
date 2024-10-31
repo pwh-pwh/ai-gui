@@ -81,7 +81,7 @@ const showInfoToast = inject<any>('showInfoToast')
 const shrink = inject<any>('shrink')
 
 
-watch(msgList, () => {
+watch(() => msgList, () => {
   scrollToBottom()
 })
 

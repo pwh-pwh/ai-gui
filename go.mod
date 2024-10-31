@@ -8,7 +8,7 @@ require (
 	github.com/baidubce/bce-qianfan-sdk/go/qianfan v0.0.9
 	github.com/lxn/win v0.0.0-20210218163916-a377121e959e
 	github.com/sashabaranov/go-openai v1.27.0
-	github.com/wailsapp/wails/v2 v2.9.1
+	github.com/wailsapp/wails/v2 v2.9.2
 )
 
 require (
@@ -47,7 +47,7 @@ require (
 	github.com/tkrajina/go-reflector v0.5.6 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasttemplate v1.2.2 // indirect
-	github.com/wailsapp/go-webview2 v1.0.10 // indirect
+	github.com/wailsapp/go-webview2 v1.0.16 // indirect
 	github.com/wailsapp/mimetype v1.4.1 // indirect
 	go.uber.org/atomic v1.9.0 // indirect
 	go.uber.org/multierr v1.9.0 // indirect
